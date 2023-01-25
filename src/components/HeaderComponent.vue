@@ -8,7 +8,7 @@
         </button>
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
-                <a class="nav-link px-3" @click="logout()">Logout</a>
+                <a href="#" class="nav-link px-3" @click="logout()">Logout</a>
             </div>
         </div>
     </header>
@@ -25,8 +25,6 @@ export default {
                 text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, logout!'
             }).then(async (result) => {
                 if (result.value) {
@@ -34,11 +32,16 @@ export default {
                         await axios.get('http://127.0.0.1:8000/api/users', { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } });
                         localStorage.removeItem('token');
                         this.$router.push({ name: 'login' });
-                        Swal.fire(
-                            'Logged Out!',
-                            '',
-                            'success'
-                        )
+                        Swal.fire({
+                            icon: 'success',
+                            title: "Logged Out!",
+                            text: "",
+                            type: 'success',
+                            timer: 2000,
+                            timerProgressBar: true,
+                            showConfirmButton: false
+                        })
+
                     } catch (error) {
                         console.log(error);
                     }

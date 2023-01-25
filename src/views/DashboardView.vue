@@ -40,8 +40,9 @@ import '../../public/dashboard.css'
               </tr>
             </thead>
             <tbody>
-              <tr v-for="user in users" :key="user.id">
-                <td>1</td>
+              <tr v-for="(user, index) in users" :key="user.id">
+
+                <td>{{ index + 1 }}</td>
                 <td>{{ user.name }}</td>
                 <td>{{ user.email }}</td>
                 <td>
@@ -84,6 +85,15 @@ export default {
         .catch(error => {
           if (error.response.status === 401) {
             this.$router.push({ name: 'login' })
+            swal.fire({
+              icon: 'error',
+              title: "Unauthorized",
+              text: "Must Login First",
+              type: 'error',
+              timer: 2000,
+              timerProgressBar: true,
+              showConfirmButton: false
+            })
           } else {
             console.log(error);
           }

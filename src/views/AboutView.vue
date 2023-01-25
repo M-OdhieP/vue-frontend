@@ -4,6 +4,13 @@
   </div>
 </template>
 
+<script>
+let token = localStorage.getItem('token');
+console.log('odhie');
+console.log(token);
+
+</script>
+
 <style>
 @media (min-width: 1024px) {
   .about {
@@ -13,3 +20,5 @@
   }
 }
 </style>
+
+

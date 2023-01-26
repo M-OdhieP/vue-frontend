@@ -2,6 +2,8 @@
 import HeaderComponent from '../components/HeaderComponent.vue'
 import SidebarComponent from '../components/SidebarComponent.vue'
 import '../../public/dashboard.css'
+
+
 </script>
 
 <template>
@@ -19,12 +21,7 @@ import '../../public/dashboard.css'
           <div class="btn-toolbar mb-2 mb-md-0">
             <button type="button" class="btn btn-sm btn-outline-secondary" @click="createUser()">
               Add User
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-person-plus-fill" viewBox="0 0 16 16">
-                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                <path fill-rule="evenodd"
-                  d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
-              </svg>
+              <PersonPlus />
             </button>
           </div>
         </div>
@@ -46,8 +43,12 @@ import '../../public/dashboard.css'
                 <td>{{ user.name }}</td>
                 <td>{{ user.email }}</td>
                 <td>
-                  <button @click="editUser(user)" class="btn btn-sm btn-info me-1">Edit</button>
-                  <button @click="deleteUser(user.id)" class="btn btn-sm btn-danger gap-1">Delete</button>
+                  <button @click="editUser(user)" class="btn btn-sm btn-info me-1">
+                    <PencilSquare /> Edit
+                  </button>
+                  <button @click="deleteUser(user.id)" class="btn btn-sm btn-danger gap-1">
+                    <TrashFill /> Delete
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -62,6 +63,11 @@ import '../../public/dashboard.css'
 import axios from 'axios'
 import swal from 'sweetalert2'
 import { successSwal, errorSwal } from "../components/method/SwalAlert.js";
+import PersonPlus from '../components/icons/PersonPlus.vue'
+import PencilSquare from '../components/icons/PencilSquare.vue'
+import TrashFill from '../components/icons/TrashFill.vue'
+
+
 export default {
   data() {
     return {

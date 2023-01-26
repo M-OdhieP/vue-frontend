@@ -18,12 +18,7 @@
         </div>
     </nav>
 </template>
-<script>
-
-// import 'bootstrap-icons/icons/trash.svg'
-
-
-</script>
+ 
  
 
 

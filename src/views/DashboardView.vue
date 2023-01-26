@@ -84,11 +84,19 @@ export default {
           this.users = response.data.user
         })
         .catch(error => {
+
+          if (error.message == "Network Error") {
+            errorSwal("Error", error.message)
+            this.$router.push({ name: 'login' })
+          }
+
           if (error.response.status === 401) {
             this.$router.push({ name: 'login' })
             errorSwal("Unauthorized", "Must Login First!")
           } else {
             console.log(error);
+            errorSwal("Error", error.message)
+            this.$router.push({ name: 'login' })
           }
         })
     },

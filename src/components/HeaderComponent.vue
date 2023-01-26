@@ -15,8 +15,8 @@
 </template>
 <script>
 import axios from 'axios';
+import { errorSwal, successSwal } from "../components/method/SwalAlert.js";
 import Swal from 'sweetalert2';
-
 export default {
     methods: {
         async logout() {
@@ -32,18 +32,13 @@ export default {
                         await axios.get('http://127.0.0.1:8000/api/users', { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } });
                         localStorage.removeItem('token');
                         this.$router.push({ name: 'login' });
-                        Swal.fire({
-                            icon: 'success',
-                            title: "Logged Out!",
-                            text: "",
-                            type: 'success',
-                            timer: 2000,
-                            timerProgressBar: true,
-                            showConfirmButton: false
-                        })
+                        successSwal("Logged Out!", "")
+
+
 
                     } catch (error) {
                         console.log(error);
+                        errorSwal("Error!", error.message)
                     }
                 }
             })

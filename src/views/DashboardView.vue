@@ -61,6 +61,7 @@ import '../../public/dashboard.css'
 <script>
 import axios from 'axios'
 import swal from 'sweetalert2'
+import { successSwal, errorSwal } from "../components/method/SwalAlert.js";
 export default {
   data() {
     return {
@@ -85,15 +86,7 @@ export default {
         .catch(error => {
           if (error.response.status === 401) {
             this.$router.push({ name: 'login' })
-            swal.fire({
-              icon: 'error',
-              title: "Unauthorized",
-              text: "Must Login First",
-              type: 'error',
-              timer: 2000,
-              timerProgressBar: true,
-              showConfirmButton: false
-            })
+            errorSwal("Unauthorized", "Must Login First!")
           } else {
             console.log(error);
           }
@@ -103,8 +96,8 @@ export default {
       swal.fire({
         title: 'Edit User',
         html: `
-          <input id="name" class="swal2-input" placeholder="Name" value="${user.name}">
-          <input id="email" class="swal2-input" placeholder="Email" value="${user.email}">
+          <input id="name" class="swal2-input" placeholder="Name" value="${user.name}" required>
+          <input id="email" class="swal2-input" placeholder="Email" value="${user.email}" required>
         `,
         focusConfirm: false,
         showCancelButton: true,
@@ -125,8 +118,9 @@ export default {
             }
           }).then(response => {
             this.fetchUsers()
-            this.successSwal('Success!', 'User has been updated.')
+            successSwal('Success!', 'User has been updated.')
           }).catch(error => {
+            errorSwal('Update User Failed', 'Please ensure that the email is unique and in the correct format.')
             console.log(error)
           })
         }
@@ -134,9 +128,9 @@ export default {
     },
     deleteUser(id) {
       swal.fire({
+        icon: 'warning',
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
-        type: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
@@ -147,7 +141,7 @@ export default {
             }
           }).then(response => {
             this.fetchUsers()
-            this.successSwal('Deleted!', 'The user has been deleted.')
+            successSwal('Deleted!', 'The user has been deleted.')
 
           }).catch(error => {
             console.log(error)
@@ -186,24 +180,16 @@ export default {
             }
           }).then(response => {
             this.fetchUsers()
-            this.successSwal('Success!', 'User has been created.')
+            // console.log(response);
+            successSwal('Success!', 'User has been created.')
           }).catch(error => {
+            errorSwal('Create User Failed', "Please make sure all fields are filled and the email is unique.")
             console.log(error)
           })
         }
       })
     },
-    successSwal(title, text) {
-      swal.fire({
-        icon: 'success',
-        title: title,
-        text: text,
-        type: 'success',
-        timer: 2000,
-        timerProgressBar: true,
-        showConfirmButton: false
-      });
-    },
+
   }
 }
 </script>

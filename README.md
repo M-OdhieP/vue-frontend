@@ -1,14 +1,14 @@
-# vue-frontend
+**## Muhamad Odhie Prasetio VueJS Frontend**
 
-This template should help get you started developing with Vue 3 in Vite.
+Setelah Clone repo " **git clone https://github.com/M-OdhieP/vue-frontend** "
 
-## Recommended IDE Setup
+1. Pastikan telah memiliki Node.js dan npm (Node Package Manager) yang terpasang pada komputer Anda.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+2. Buka terminal/command prompt dan navigasikan ke direktori proyek yang baru saja Anda kloning.
 
-## Customize configuration
+3. Jalankan perintah **npm install** untuk menginstal semua dependensi yang dibutuhkan oleh proyek.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+4. Setelah proses instalasi selesai, jalankan perintah **npm run dev** untuk menjalankan proyek pada development server.
 
 ## Project Setup
 
